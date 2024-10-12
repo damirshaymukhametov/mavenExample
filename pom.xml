@@ -1,0 +1,48 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>org.example</groupId>
+  <artifactId>mavenExample</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <packaging>pom</packaging>
+
+  <name>mavenExample</name>
+  <url>http://maven.apache.org</url>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>11</maven.compiler.source>
+    <maven.compiler.target>11</maven.compiler.target>
+    <junit.jupiter.version>5.11.0</junit.jupiter.version>
+    <allure.junit5.version>2.13.9</allure.junit5.version>
+    <rest.assured.version>5.5.0</rest.assured.version>
+    <allure.rest.assured.version>2.13.9</allure.rest.assured.version>
+    <jackson.databind.version>2.17.2</jackson.databind.version>
+    <testcontainers.version>1.20.1</testcontainers.version>
+    <selenide.version>6.15.0</selenide.version>
+    <allure.selenide.version>2.13.9</allure.selenide.version>
+    <allure.results.directory>${project.build.directory}/allure-results</allure.results.directory>
+  </properties>
+
+  <modules>
+    <module>api-tests</module>
+    <module>ui-tests</module>
+  </modules>
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.junit.jupiter</groupId>
+        <artifactId>junit-jupiter</artifactId>
+        <version>${junit.jupiter.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>io.qameta.allure</groupId>
+        <artifactId>allure-junit5</artifactId>
+        <version>${allure.junit5.version}</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
+</project>
