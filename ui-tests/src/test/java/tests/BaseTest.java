@@ -18,7 +18,7 @@ public class BaseTest {
 
     @BeforeEach
     public void setUp() throws IOException {
-        Configuration.remote = "http://127.0.0.1:4444/wd/hub";
+        Configuration.remote = "http://172.19.0.5:4444/wd/hub";
         Configuration.browser = "firefox";
         Configuration.browserSize = "1920x1080";
         Configuration.baseUrl = config.baseUrl();
