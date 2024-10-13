@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  selenoid:
+    image: aerokube/selenoid:latest
+    ports:
+      - "4444:4444"   # WebDriver
+      - "8080:8080"   # UI Selenoid
+    volumes:
+      - .\browsers.json:/etc/selenoid/browsers.json   # Путь к browsers.json
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - autot1_internal
+    command: ["-container-network", "autot1_internal"]
+
+  selenoid-ui:
+    image: aerokube/selenoid-ui:latest
+    ports:
+      - "8081:8080"   # UI для Selenoid
+    depends_on:
+      - selenoid
+    networks:
+      - autot1_internal
+    command: ["--selenoid-uri","http://selenoid:4444"]	  
+
+  jenkins:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8082:8080"   # Jenkins
+    volumes:
+      - jenkins_home:/var/jenkins_home
+    networks:
+      - autot1_internal
+
+volumes:
+  jenkins_home:
+
+networks:
+  autot1_internal:
+    external: true
